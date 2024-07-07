@@ -1,0 +1,14 @@
+<table>
+    <thead>
+        <tr>
+            <th *ngFor="let head of coldef">{{head}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let body of tableData; let i =index">
+            <ng-container *ngFor="let head of coldef">
+            <td>{{body.head.i}}</td>
+        </ng-container>
+        </tr>
+    </tbody>
+</table>
