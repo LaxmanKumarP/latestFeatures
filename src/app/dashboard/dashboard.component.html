@@ -1,1 +1,40 @@
-<app-custom-tabels [tableData]="data" [coldef]="cols"></app-custom-tabels>
+<div class="row">
+    <div class="col-md-9">
+        <app-custom-tabels [tableData]="data" [coldef]="cols" (pageChanged)="pageChange($event)"></app-custom-tabels>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body container">
+                <i class="fas fa-yen-sign"></i>
+                <select class="form-select" aria-label="Default select example" (change)="selectItems($event)">
+                    <option selected>All Items</option>
+                    <option *ngFor="let x of categories">{{x}}</option>
+                    <!-- <option value="2">Two</option>
+                    <option value="3">Three</option> -->
+                </select>
+            </div>
+        </div>
+        <!-- <div class="row mt-4">
+            <div class="row d-flex">
+                <div class="col-md-6"><label for="customRange1" class="form-label">0</label></div>
+                <div class="col-md-6">
+                    <label for="customRange1" class="form-label displRight">Max</label>
+                </div>
+            </div>
+            <input type="range" class="form-range" id="customRange1" (click)="rangeChange($event)">
+            <ngb-progressbar class="mb-3" [showValue]="true" type="success" [value]="range" (click)="rangeChange($event)" />
+
+        </div> -->
+
+        <div class="card">
+            <div class="card-body container">
+                <select class="form-select" aria-label="Default select example" (change)="selectPriceItems($event)">
+                    <option selected>All Items</option>
+                    <option *ngFor="let x of range">{{x}}</option>
+                    <!-- <option value="2">Two</option>
+                    <option value="3">Three</option> -->
+                </select>
+            </div>
+        </div>
+    </div>
+</div>

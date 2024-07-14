@@ -1,0 +1,15 @@
+table tr td, table tr th{
+    border: 1px solid grey;
+}
+
+.bg-color {
+    background-color:brown;
+    color:azure;
+    font-style: italic;
+}
+
+.tblHeight {
+    max-height:600px;
+    overflow-y: scroll;
+    min-height: auto;
+}

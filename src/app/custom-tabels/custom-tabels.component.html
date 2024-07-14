@@ -1,14 +1,84 @@
-<table>
-    <thead>
-        <tr>
-            <th *ngFor="let head of coldef">{{head}}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let body of tableData; let i =index">
-            <ng-container *ngFor="let head of coldef">
-            <td>{{body.head.i}}</td>
-        </ng-container>
-        </tr>
-    </tbody>
-</table>
+<div class="container mt-3">
+    <div class="tblHeight">
+        <table class="table table-striped px-3">
+            <thead>
+                <tr>
+                    <th *ngFor="let head of coldef" class="bg-color">{{head | uppercase}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let body of tableData; let i =index">
+                    <ng-container *ngFor="let head of coldef">
+                        <!-- <td>
+                            <ng-container *ngIf="head === 'image'; else otherContent">
+                                <img [src]="body[head]" alt="Image" style="max-width: 100px; max-height: 80px">
+                            </ng-container>
+                            <ng-template #otherContent>
+                                <ng-container *ngIf="head === 'rating'; else textContent">
+                                    <i class="fas fa-yen-sign" (click)="openModal(body[head],content)"></i>
+                                </ng-container>
+                                <ng-template #textContent>
+                                    <ng-container *ngIf="head === 'category'; else direcCategory">
+                                        <span appCustomUpperCase>{{body[head]}}</span>
+                                    </ng-container>
+                                </ng-template>
+                                <ng-template #direcCategory>
+                                    <ng-container *ngIf="head === 'price'; else contents">
+                                        {{body[head] | priceCal}}
+                                    </ng-container>
+                                </ng-template>
+                                <ng-template #contents>
+                                    {{body[head]}}
+                                </ng-template>
+                            </ng-template>
+                        </td> -->
+                        <td>
+                            <container-element [ngSwitch]="head">
+                                <ng-container *ngSwitchCase="'image'">
+                                    <img [src]="body[head]" alt="Image" style="max-width: 100px; max-height: 80px">
+                                </ng-container>
+                                <ng-container *ngSwitchCase="'rating'">
+                                    <i class="fas fa-yen-sign" (click)="openModal(body[head],content)"></i>
+                                </ng-container>
+                                <ng-container *ngSwitchCase="'category'">
+                                    <span appCustomUpperCase>{{body[head]}}</span>
+                                </ng-container>
+                                <ng-container *ngSwitchCase="'price'">
+                                    {{body[head] | priceCal}}
+                                </ng-container>
+                                <ng-container *ngSwitchDefault>
+                                    {{body[head]}}
+                                </ng-container>
+                            </container-element>
+                        </td>
+                    </ng-container>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Rating Information</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <ng-container>
+                <app-rating [Rating]="selectedRating"></app-rating>
+            </ng-container>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Save click')">Save</button>
+        </div>
+    </ng-template>
+    <div class="d-flex justify-content-between p-2">
+        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+            (pageChange)="refreshData()">
+        </ngb-pagination>
+
+        <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshData()">
+            <option [ngValue]="2">2 items per page</option>
+            <option [ngValue]="4">4 items per page</option>
+            <option [ngValue]="6">6 items per page</option>
+        </select>
+    </div>
+</div>
