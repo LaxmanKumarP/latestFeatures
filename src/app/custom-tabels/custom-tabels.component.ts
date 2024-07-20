@@ -1,16 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, Output, TemplateRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ModalDismissReasons, NgbModal, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
+import { ModalDismissReasons, NgbModal, NgbPagination, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { Router, RouterModule } from '@angular/router';
 import { RatingComponent } from "../rating/rating.component";
 import { PriceCalPipe } from "../price-cal.pipe";
 import { CustomUpperCaseDirective } from '../custom-upper-case.directive';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-custom-tabels',
   standalone: true,
-  imports: [CommonModule, NgbPagination, FormsModule, RatingComponent, PriceCalPipe, CustomUpperCaseDirective],
+  imports: [CommonModule, NgbPagination, FormsModule, RatingComponent, PriceCalPipe, CustomUpperCaseDirective, NgbTooltipModule, RouterModule],
   templateUrl: './custom-tabels.component.html',
   styleUrl: './custom-tabels.component.css'
 })
@@ -24,7 +25,7 @@ export class CustomTabelsComponent implements OnChanges {
   selectedRating: any;
   closeResult: any;
 
- constructor(private router:Router, private modalService: NgbModal){}
+ constructor(private router:Router, private modalService: NgbModal, private sharedService:SharedService){}
  
 
  ngOnInit(){
@@ -65,5 +66,10 @@ private getDismissReason(reason: any): string {
     default:
       return `with: ${reason}`;
   }
+}
+
+openInduvidualProduct(id:number){
+this.sharedService.productId = id;
+this.router.navigate(['detail']);
 }
 }

@@ -9,7 +9,6 @@ export class CustomUpperCaseDirective implements OnInit{
   constructor(private el: ElementRef) { }
 
   ngOnInit(){
-    debugger;
     let el = this.el.nativeElement;
     el.setAttribute('style', 'text-transform: capitalize; font-weight: bold');
     //  this.el.nativeElement.style.color = "red"

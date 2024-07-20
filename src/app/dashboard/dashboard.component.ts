@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnDestroy,OnInit } from '@angular/core';
 import { SharedService } from '../shared.service';
 import { CustomTabelsComponent } from "../custom-tabels/custom-tabels.component";
 import { CommonModule } from '@angular/common';
@@ -7,6 +7,7 @@ import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome/fontawesome.module';
 import { faFontAwesomeAlt } from '@fortawesome/free-brands-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -16,22 +17,23 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
     styleUrl: './dashboard.component.css',
     imports: [CommonModule, CustomTabelsComponent, NgbProgressbarModule]
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   data: any;
   cols!: any;
   categories: any;
   range:any = [0,100,300,500,1000,1500];
   unChangedData:any;
+  subscription!: Subscription;
   
 
   constructor(private sharedService:SharedService, private router: Router){}
   ngOnInit(){
     console.log(this.router.url);
     this.getAllProducts();
-
-    this.sharedService.getCategories().subscribe(res => {
+this.sharedService.getCategories().subscribe(res => {
         this.categories = res;
               console.log(this.categories);
+
 
     })
   }
@@ -48,7 +50,8 @@ export class DashboardComponent implements OnInit {
   }
 
   getAllProducts(){
-    this.sharedService.getProducts().subscribe(res => {
+    // this.data = this.sharedService.getProducts();
+    this.subscription = this.sharedService.getProducts().subscribe(res => {
       this.data = [...res];
       this.unChangedData = [...res];
       this.cols= Object.keys(this.data[0]);
@@ -70,5 +73,25 @@ export class DashboardComponent implements OnInit {
       console.log(this.data);
     }
 console.log(e.target.value);
+  }
+
+  logout(){
+    sessionStorage.removeItem("token");
+    localStorage.removeItem('token');
+    this.router.navigate(['']);
+  }
+
+  ngOnDestroy(){
+   
+    console.log('dashbodrd destroyed!!');
+  }
+
+  refreshData(){
+    this.getAllProducts();
+    if(this.subscription){
+      this.subscription.unsubscribe();
+      this.data = [];
+    }
+  
   }
 }

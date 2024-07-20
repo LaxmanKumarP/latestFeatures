@@ -1,4 +1,10 @@
 <div class="row">
+<button class="btn btn-primary" (click)="logout()">logout</button>
+</div>
+<div class="row">
+    <button class="btn btn-primary" (click)="refreshData()">Refresh</button>
+</div>
+<div class="row">
     <div class="col-md-9">
         <app-custom-tabels [tableData]="data" [coldef]="cols" (pageChanged)="pageChange($event)"></app-custom-tabels>
     </div>

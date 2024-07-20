@@ -1,4 +1,5 @@
 <label>Count: </label>{{Rating.count}}
-<label>Rating: </label> {{Rating.rate}}
-<label>Name: </label><input type='text' placeholder="enter name" [(ngModel)]="name" />
-<div> My Name is {{name|customPipe}}</div>
+<label>Rating: </label><ngb-rating [rate]= Rating.rate />
+ <!-- {{Rating.rate}} -->
+<!-- <label>Name: </label><input type='text' placeholder="enter name" [(ngModel)]="name" />
+<div> My Name is {{name|customPipe}}</div> -->

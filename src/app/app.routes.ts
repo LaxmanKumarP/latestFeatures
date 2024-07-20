@@ -1,10 +1,14 @@
 import { Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { CustomTabelsComponent } from './custom-tabels/custom-tabels.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { LoginComponent } from './login/login.component';
+import { ItemDetailsComponent } from './item-details/item-details.component';
+import { UsersListComponent } from './users-list/users-list.component';
 
 export const routes: Routes = [
-    // {path:'', component:CustomTabelsComponent},
-    {path:'', component:DashboardComponent},
-    // {path:'table', component:CustomTabelsComponent}
-
+    {path:'dashboard', component:DashboardComponent},
+    {path:'detail', component:ItemDetailsComponent},
+    {path:'', component:LoginComponent},
+    {path:'product/:id', component:ProductDetailComponent},
+    {path:'users', component:UsersListComponent}
 ];

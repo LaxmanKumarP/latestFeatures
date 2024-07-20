@@ -3,7 +3,8 @@
         <table class="table table-striped px-3">
             <thead>
                 <tr>
-                    <th *ngFor="let head of coldef" class="bg-color">{{head | uppercase}}</th>
+                    <th *ngFor="let head of coldef" class="bg-color">
+                        <span  placement="end" ngbTooltip="{{head | uppercase}}">{{head | uppercase}}</span></th>
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +35,10 @@
                         </td> -->
                         <td>
                             <container-element [ngSwitch]="head">
+                                <ng-container *ngSwitchCase="'id'">
+                                    <!-- <a [routerLink]="'/product/' + body[head]" target="_blank">{{body[head]}}</a> -->
+                                     <button class="btn btn-primary" (click)="openInduvidualProduct(body[head])"> {{body[head]}}</button>
+                                </ng-container>
                                 <ng-container *ngSwitchCase="'image'">
                                     <img [src]="body[head]" alt="Image" style="max-width: 100px; max-height: 80px">
                                 </ng-container>
@@ -66,9 +71,9 @@
                 <app-rating [Rating]="selectedRating"></app-rating>
             </ng-container>
         </div>
-        <div class="modal-footer">
+        <!-- <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Save click')">Save</button>
-        </div>
+        </div> -->
     </ng-template>
     <div class="d-flex justify-content-between p-2">
         <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
