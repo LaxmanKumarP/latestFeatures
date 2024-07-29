@@ -1,1 +1,20 @@
-<app-custom-tabels [tableData]="data" [coldef]="cols" (pageChanged)="pageChange($event)"></app-custom-tabels>
+<div class="row">
+    <div class="col-md-9">
+        <app-custom-tabels [tableData]="data" [coldef]="cols" (pageChanged)="pageChange($event)"></app-custom-tabels>
+    </div>
+    <div class="col-md-3">
+        <div class="card" style="width: 18rem;">
+            <!-- <img src="{{productDetails?.image}}" class="card-img-top" alt="..."> -->
+            <div class="card-body">
+            <h5 class="card-title">ZipCode: {{address?.zipcode}}</h5>
+              <p class="card-text">Street: {{address?.street}}</p>
+              <p class="card-text">City: {{address?.city}}</p>
+              <p class="card-text">Number: {{address?.number}}</p>
+              <p class="card-text">GeoLocationLatitude: {{address?.geolocation?.lat}}</p>
+              <p class="card-text">GeoLocationLongitude: {{address?.geolocation?.long}}</p>
+
+            </div>
+          </div>
+    </div>
+
+</div>

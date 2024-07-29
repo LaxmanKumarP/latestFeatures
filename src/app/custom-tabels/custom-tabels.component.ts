@@ -29,13 +29,10 @@ export class CustomTabelsComponent implements OnChanges {
  
 
  ngOnInit(){
-  console.log(this.router.url);
   console.log(this.tableData,'checking on load');
  }
 
  ngOnChanges(){
-  console.log(this.tableData);
-  console.log(this.coldef);
   this.collectionSize = this.tableData?.length;
  }
 
@@ -71,5 +68,12 @@ private getDismissReason(reason: any): string {
 openInduvidualProduct(id:number){
 this.sharedService.productId = id;
 this.router.navigate(['detail']);
+}
+
+addressValue(item:any){
+  this.sharedService.addressObs$.next(item);
+  // this.sharedService.addressObs$.complete();
+  // console.log(this.sharedService.addressObs$.next(item),'address');
+
 }
 }

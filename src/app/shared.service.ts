@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +9,10 @@ export class SharedService {
   baseUrl ='https://fakestoreapi.com/';
   private barerToken = null;
   productId!: number;
-  // https://fakestoreapi.com/products/categories
-
+  isAdmin:boolean = false;
+  // addressObs$: Subject<any> = new Subject();
+  // addressObs$: BehaviorSubject<any> = new BehaviorSubject<any>();
+  addressObs$: BehaviorSubject<any> = new BehaviorSubject<any>({street:'zoo', city:'hyd', number: 123, geolocation: {lat:123, long:4567}});
   constructor(private http: HttpClient) { }
 
   setToken(tkn:any){
@@ -48,11 +50,5 @@ export class SharedService {
   loginUser(loginObj:any):Observable<any>{
     return this.http.post(this.baseUrl+ 'auth/login', loginObj);
   }
-
-  // https://fakestoreapi.com/auth/login
-  // https://fakestoreapi.com/products/4
-  // https://fakestoreapi.com/products?limit=5
-  // https://fakestoreapi.com/products/category/jeweler
-  // https://fakestoreapi.com/users
 
 }

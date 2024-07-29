@@ -12,14 +12,22 @@ import { SharedService } from '../shared.service';
 export class UsersListComponent implements OnInit{
   data!:any;
   cols:any;
-   constructor(private sharedService: SharedService){ }
+  address:any;
+   constructor(private sharedService: SharedService){ 
+    console.log('constructur called !!!!!!!!!!');
+   }
    ngOnInit(){
+    console.log('OnInit called !!!!!!!!!!');
+
+    this.sharedService.addressObs$.subscribe(res => {
+      this.address = res;
+    }
+    )
      this.sharedService.getUsers().subscribe(res => 
       {
         this.cols = Object.keys(res[0]);
         // this.cols = this.cols.filter((x:any) => x.toUpperCase() != '__V');
         this.cols.pop();
-        console.log(this.cols);
         res.forEach((element:any) => {
           if(element.name){
             return element.name = element.name.firstname +' ' + element.name.lastname;
@@ -28,7 +36,6 @@ export class UsersListComponent implements OnInit{
           }
         })
       this.data = res;
-      console.log(this.data,'datachk')
      });
    }
  

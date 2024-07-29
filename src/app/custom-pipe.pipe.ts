@@ -14,9 +14,6 @@ export class CustomPipePipe implements PipeTransform {
     if (splitValue.length > 1) {
       return fullName
     }
-    console.log(fullName);
-    console.log(splitValue[0][0]);
-    console.log(splitValue);
     return value;
   }
 

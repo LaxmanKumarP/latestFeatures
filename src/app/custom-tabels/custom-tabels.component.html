@@ -39,6 +39,9 @@
                                     <!-- <a [routerLink]="'/product/' + body[head]" target="_blank">{{body[head]}}</a> -->
                                      <button class="btn btn-primary" (click)="openInduvidualProduct(body[head])"> {{body[head]}}</button>
                                 </ng-container>
+                                <ng-container *ngSwitchCase="'address'">
+                                     <button class="btn btn-primary" (click)="addressValue(body[head])">  <i class="fa-solid fa-house"></i> </button>
+                                </ng-container>
                                 <ng-container *ngSwitchCase="'image'">
                                     <img [src]="body[head]" alt="Image" style="max-width: 100px; max-height: 80px">
                                 </ng-container>
