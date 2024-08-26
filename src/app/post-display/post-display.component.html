@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h2>{{postDetails.title}}</h2>
+      <div><img src="../../assets/hero1.jpg" alt="postDetails.title"></div>
+      <h4><em>{{postDetails.body}}</em></h4>
+      <div class="row" *ngFor="let comment of commentDetails">
+        <div class="card">
+            <div class="card-body">
+               <h4>{{comment.name}}</h4> 
+              <p>{{comment.body}}</p>
+              <!-- <a [routerLink]="cardinfo?.id">go to posts...</a> -->
+              <!-- <h5 class="card-title">{{cardinfo?.title}}</h5> -->
+              <!-- <p class="card-text">{{cardinfo?.body}}</p> -->
+            </div>
+          </div>
+    </div>
+    </div>
+
+  </div>
+
+</div>

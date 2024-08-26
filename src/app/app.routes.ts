@@ -6,12 +6,20 @@ import { ItemDetailsComponent } from './item-details/item-details.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { authGuard } from './auth.guard';
 import { SignupComponent } from './signup/signup.component';
+import { PostDisplayComponent } from './post-display/post-display.component';
+import { DisplayCardsComponent } from './display-cards/display-cards.component';
+import { moveOutGuard } from './move-out.guard';
 
 export const routes: Routes = [
+    {path:'', component:LoginComponent},
     {path:'dashboard', component:DashboardComponent},
     {path:'detail', component:ItemDetailsComponent},
-    {path:'', component:LoginComponent},
+    {path:'signup',component:SignupComponent,canDeactivate:[moveOutGuard]},
+    {path:'login', component:LoginComponent, canDeactivate:[moveOutGuard]},
     {path:'product/:id', component:ProductDetailComponent},
     {path:'users', component:UsersListComponent, canActivate:[authGuard]},
-    {path: 'signup', component:SignupComponent}
+    {path: 'signup', component:SignupComponent},
+    {path:'posts', component:DisplayCardsComponent, canActivate:[authGuard]},
+    {path:'posts/:id', component:PostDisplayComponent , canActivate:[authGuard]},
+    {path:'**', component:LoginComponent}
 ];

@@ -4,3 +4,9 @@
     flex-wrap: nowrap;
     gap: 5px;
 }
+
+.error {
+    display: block;
+    font-size: 12px;
+    color: red;
+}

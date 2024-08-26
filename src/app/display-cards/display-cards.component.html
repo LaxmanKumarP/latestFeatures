@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row">
+        <div class="card col-md-4" *ngFor="let cardinfo of cardDetails">
+            <div class="card-body">
+              <h1>{{cardinfo?.id}}</h1>
+              <a [routerLink]="cardinfo?.id">go to posts...</a>
+              <h5 class="card-title">{{cardinfo?.title}}</h5>
+              <p class="card-text">{{cardinfo?.body}}</p>
+            </div>
+          </div>
+    </div>
+</div>
+

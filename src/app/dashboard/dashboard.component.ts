@@ -9,6 +9,7 @@ import { faFontAwesomeAlt } from '@fortawesome/free-brands-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { filter, forkJoin, mergeMap, of, Subscription, take, takeLast } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { DisplayCardsComponent } from "../display-cards/display-cards.component";
 
 
 @Component({
@@ -16,7 +17,7 @@ import { HttpClient } from '@angular/common/http';
     standalone: true,
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css',
-    imports: [CommonModule, CustomTabelsComponent, NgbProgressbarModule]
+    imports: [CommonModule, CustomTabelsComponent, NgbProgressbarModule, DisplayCardsComponent]
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   data: any;
@@ -42,16 +43,16 @@ forkJoin([productUrl,categoriesUrl]).subscribe(res => {
       this.unChangedData = res[1];
       this.cols= Object.keys(this.data[0]);
 })
-const source = of(productUrl,categoriesUrl);
-
-// source.mergeMap(value =>).subscribe(res => {
-//   console.log(res,'fork');
-//   this.categories = res[0];
+// const source = of(productUrl,categoriesUrl);
+// productUrl.pipe(
+//         mergeMap((resp: any) =>{console.log(resp,'cccc'), categoriesUrl ; return resp})
+//       ).subscribe((res: any) => {
+//         console.log(res, 'ch');
+//           this.categories = res[0];
 //      this.data = res[1];
 //       this.unChangedData = res[1];
 //       this.cols= Object.keys(this.data[0]);
-// })
-
+//       });
   }
 
   selectItems(e:any){

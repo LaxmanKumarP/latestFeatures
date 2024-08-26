@@ -7,9 +7,13 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 })
 export class SharedService {
   baseUrl ='https://fakestoreapi.com/';
+  cardsBaseUrl = 'https://jsonplaceholder.typicode.com/';
+  cascadingapi = 'https://www.universal-tutorial.com/api/';
   private barerToken = null;
   productId!: number;
   isAdmin:boolean = false;
+  cascadeApiToken: any;
+
   // addressObs$: Subject<any> = new Subject();
   // addressObs$: BehaviorSubject<any> = new BehaviorSubject<any>();
   addressObs$: BehaviorSubject<any> = new BehaviorSubject<any>({street:'zoo', city:'hyd', number: 123, geolocation: {lat:123, long:4567}});
@@ -51,4 +55,23 @@ export class SharedService {
     return this.http.post(this.baseUrl+ 'auth/login', loginObj);
   }
 
+  getCardsToDisplay():Observable<any>{
+    return this.http.get(this.cardsBaseUrl + 'posts');
+  }
+
+  getAcessToken():Observable<any>{
+    return this.http.get(this.cascadingapi + 'getaccesstoken');
+  }
+
+  getCountries():Observable<any>{
+    return this.http.get(this.cascadingapi + 'countries');
+  }
+
+  getStates(selectedCountry:string):Observable<any>{
+    return this.http.get(this.cascadingapi + 'states/'+ selectedCountry);
+  }
+
+  getCities(selectedState:string):Observable<any>{
+    return this.http.get(this.cascadingapi + 'cities/'+ selectedState);
+  }
 }
