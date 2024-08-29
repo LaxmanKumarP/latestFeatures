@@ -9,9 +9,10 @@ import { SignupComponent } from './signup/signup.component';
 import { PostDisplayComponent } from './post-display/post-display.component';
 import { DisplayCardsComponent } from './display-cards/display-cards.component';
 import { moveOutGuard } from './move-out.guard';
+import { AppComponent } from './app.component';
 
 export const routes: Routes = [
-    {path:'', component:LoginComponent},
+    {path:'', component:AppComponent},
     {path:'dashboard', component:DashboardComponent},
     {path:'detail', component:ItemDetailsComponent},
     {path:'signup',component:SignupComponent,canDeactivate:[moveOutGuard]},

@@ -1,2 +1,39 @@
 
-<router-outlet></router-outlet>
+<header class="fixed-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>
+                    <a [routerLink]="['/login']">Angular Features</a>
+                </h3>
+                </div>
+            <div class="col-lg-6">
+                <nav>
+                    <ul class="nav nav-pills float-right">
+                        <li class="nav-item">
+                            <a class="nav-link active" [routerLink]="['/login']">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" [routerLink]="['/dashboard']">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" [routerLink]="['/users']">Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" [routerLink]="['/posts']">Posts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" [routerLink]="['/']">Back</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<main  class="container">
+    <router-outlet></router-outlet>
+</main>
+<footer class="container fixed-bottom">
+    <p>Developed with &hearts;<span>By Laxman</span></p>
+</footer>

@@ -5,5 +5,5 @@ import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { ListDetailsComponent } from './app/list-details/list-details.component';
 
-bootstrapApplication(ListDetailsComponent, appConfig)
+bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error(err));
