@@ -4,7 +4,8 @@
             <thead>
                 <tr>
                     <th *ngFor="let head of coldef" class="bg-color">
-                        <span  placement="end" ngbTooltip="{{head | uppercase}}">{{head | uppercase}}</span></th>
+                        <span placement="end" ngbTooltip="{{head | uppercase}}">{{head | uppercase}}</span>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -37,10 +38,13 @@
                             <container-element [ngSwitch]="head">
                                 <ng-container *ngSwitchCase="'id'">
                                     <!-- <a [routerLink]="'/product/' + body[head]" target="_blank">{{body[head]}}</a> -->
-                                     <button class="btn btn-primary" (click)="openInduvidualProduct(body[head])"> {{body[head]}}</button>
+                                    <button class="btn btn-primary" (click)="openInduvidualProduct(body[head])">
+                                        {{body[head]}}</button>
                                 </ng-container>
                                 <ng-container *ngSwitchCase="'address'">
-                                     <button class="btn btn-primary" (click)="addressValue(body[head])">  <i class="fa-solid fa-house"></i> </button>
+                                    <button class="btn btn-primary" (click)="addressValue(body[head])"> <i
+                                            class="fa-solid fa-house"></i> </button>
+                                            <button class="btn btn-primary" (click)="showAddress(body)"> <i class="fa-solid fa-tent"></i> </button>
                                 </ng-container>
                                 <ng-container *ngSwitchCase="'image'">
                                     <img [src]="body[head]" alt="Image" style="max-width: 100px; max-height: 80px">
@@ -89,4 +93,5 @@
             <option [ngValue]="6">6 items per page</option>
         </select>
     </div>
+    <app-address-model #addres [userId]="currentUser"></app-address-model>
 </div>

@@ -35,6 +35,10 @@ export class SharedService {
     return this.http.get(this.baseUrl+ 'users');
   }
 
+  getSingleUsers(id:number):Observable<any>{
+    return this.http.get(this.baseUrl+ 'users/' + id);
+  }
+
   getCategories():Observable<any>{
     return this.http.get(this.baseUrl+ 'products/categories' );
   }

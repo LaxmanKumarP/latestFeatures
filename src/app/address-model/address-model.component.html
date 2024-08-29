@@ -1,0 +1,25 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Address Information</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div>
+            <div class="card" >
+                <!-- <img src="{{productDetails?.image}}" class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                <h5 class="card-title">ZipCode: {{address?.zipcode}}</h5>
+                  <p class="card-text">Street: {{address?.street}}</p>
+                  <p class="card-text">City: {{address?.city}}</p>
+                  <p class="card-text">Number: {{address?.number}}</p>
+                  <p class="card-text">GeoLocationLatitude: {{address?.geolocation?.lat}}</p>
+                  <p class="card-text">GeoLocationLongitude: {{address?.geolocation?.long}}</p>
+    
+                </div>
+              </div>
+        </div>
+    </div>
+    <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Save click')">Save</button>
+    </div> -->
+</ng-template>

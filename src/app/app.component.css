@@ -1,0 +1,29 @@
+header {
+    background: #fff;
+}
+
+header .container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+header h3 a{
+    color: #e47676;
+}
+
+main.container{
+    padding-top: 100px;
+    padding-bottom: 20px;
+    margin-bottom: 80px;
+}
+
+footer {
+    background: #fff;
+}
+
+footer.container{
+    padding-top: 15px;
+    border-top: 1px solid #e5e5e5;
+    color: #e47676;
+}

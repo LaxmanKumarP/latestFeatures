@@ -1,3 +1,8 @@
 .displRight {
     float:right !important
 }
+
+.btn-container {
+    display: flex;
+    justify-content: flex-end;
+}
