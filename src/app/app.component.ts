@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { SharedService } from './shared.service';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,30 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  isLogged = false;
+  mySubscription: any;
+  constructor( private router: Router, private sharedService: SharedService){ }
+   
+  ngOnInit(): void {
+    this.sharedService.isLoggedIn$.subscribe(res =>{
+      if(res){
+        this.isLogged = res;
+      }
+    })
+    
+
+   }
+  
   title = 'latestFeatures';
-}
+  logout(){
+    sessionStorage.removeItem("token");
+    localStorage.removeItem('token');
+    sessionStorage.removeItem('isAdmin');
+    this.sharedService.isLoggedIn$.next(false);
+    this.isLogged = false;
+    this.router.navigate(['/login']);
+    
+  }
+
+  }

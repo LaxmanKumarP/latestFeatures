@@ -13,9 +13,7 @@ export class SharedService {
   productId!: number;
   isAdmin:boolean = false;
   cascadeApiToken: any;
-
-  // addressObs$: Subject<any> = new Subject();
-  // addressObs$: BehaviorSubject<any> = new BehaviorSubject<any>();
+  isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   addressObs$: BehaviorSubject<any> = new BehaviorSubject<any>({street:'zoo', city:'hyd', number: 123, geolocation: {lat:123, long:4567}});
   constructor(private http: HttpClient) { }
 

@@ -32,6 +32,7 @@ export class LoginComponent {
           this.sharedServe.isAdmin = true;
           sessionStorage.setItem('isAdmin', 'true');
         }
+        this.sharedServe.isLoggedIn$.next(true);
         this.router.navigate(['dashboard']);
       }
     })
